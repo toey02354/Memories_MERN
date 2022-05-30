@@ -14,18 +14,15 @@ const Posts = () => {
 
   return (
     <>
-      <Typography variant="h5">Posts</Typography>
-      <Grid className={classes.postsContainer} container spacing={3}>
-        <Grid item>
-          <Post />
+      {posts.length > 0 ? (
+        <Grid className={classes.postsContainer} container spacing={3}>
+          {posts.map((post) => (
+            <Post data={post} />
+          ))}
         </Grid>
-        <Grid item>
-          <Post />
-        </Grid>
-        <Grid item>
-          <Post />
-        </Grid>
-      </Grid>
+      ) : (
+        <CircularProgress />
+      )}
     </>
   )
 }
