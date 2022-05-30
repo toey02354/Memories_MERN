@@ -1,17 +1,17 @@
 import { makeStyles } from '@material-ui/styles'
 
 export default makeStyles({
-  bar: {
+  form: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: '1rem',
-    padding: '1rem 8px',
-    margin: '2rem 0',
+    gap: '0.5rem',
+    padding: '1rem',
   },
-  text: {
+  inputFile: {
     display: 'flex',
-    color: 'red',
+    justifyContent: 'flex-start',
+    margin: '0.25rem 0',
   },
 })
