@@ -7,8 +7,8 @@ export const postSlice = createSlice({
   name: 'postSlicer',
   initialState,
   reducers: {
-    getPosts: (state) => {
-      state
+    getPosts: (state, action: PayloadAction<[FormI]>) => {
+      return [...action.payload]
     },
     likePosts: (state) => {
       state

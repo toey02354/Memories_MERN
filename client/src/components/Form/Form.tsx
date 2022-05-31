@@ -4,12 +4,13 @@ import { createPost } from '../../services/Redux/postSlicer'
 import { useAppDispatch } from '../../services/Redux/hook'
 import { Typography, TextField, Button, Paper } from '@material-ui/core'
 import { FormI } from '../../interface/posts'
+import Axios from '../../api/Axios'
 
 const initialPostData = {
   creator: '',
   title: '',
   message: '',
-  tags: '',
+  tags: [''],
   file: '',
 }
 
@@ -18,10 +19,19 @@ const Form = () => {
   const classes = useStyles()
   const [postData, setPostData] = useState<FormI>(initialPostData)
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const createAPost = async () => {
+    await Axios.post('/', postData)
+      .then((res) => {
+        console.log('Response: ', res)
+      })
+      .catch((err) => console.error('Error: ', err))
+  }
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     console.log(postData)
-    dispatch(createPost(postData))
+    await createAPost()
+    setPostData(initialPostData)
   }
   const handleClear = (event: React.FormEvent) => {
     event.preventDefault()
@@ -74,7 +84,7 @@ const Form = () => {
           onChange={(e) =>
             setPostData({
               ...postData,
-              tags: e.target.value,
+              tags: e.target.value.split(','),
             })
           }
         ></TextField>
