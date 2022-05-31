@@ -9,12 +9,14 @@ export const postSlice = createSlice({
   initialState,
   reducers: {
     getPosts: (state, action: PayloadAction<[FormI]>) => {
+      console.log('Store updated, Get All Posts')
       return [...action.payload]
     },
     likePosts: (state) => {
       state
     },
     createPost: (state, action: PayloadAction<FormI>) => {
+      console.log('Store updated, Create A Post')
       return [...state, action.payload]
     },
     updatePost: (state, action: PayloadAction<FormI>) => {

@@ -22,7 +22,12 @@ function App() {
 
   useEffect(() => {
     getAllPosts()
+    console.log('There is an dispatch action, or currentId is changed')
   }, [currentId, dispatch])
+  // useEffect(() => {
+  //   getAllPosts()
+  //   console.log('There is an dispatch action')
+  // }, [dispatch])
 
   return (
     <Container maxWidth="lg">

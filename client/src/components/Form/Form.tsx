@@ -35,14 +35,16 @@ const Form = ({
   const createAPost = async () => {
     await Axios.post('/', postData)
       .then((res) => {
+        console.log('Create a post')
         console.log('Response: ', res)
       })
       .catch((err) => console.error('Error: ', err))
   }
 
-  const updateAAPost = async () => {
+  const updateAPost = async () => {
     await Axios.patch('/', postData)
       .then((res) => {
+        console.log('Update a post')
         console.log('Response: ', res)
       })
       .catch((err) => console.error('Error: ', err))
@@ -54,7 +56,7 @@ const Form = ({
       createAPost()
       dispatch(createPost(postData))
     } else {
-      updateAAPost()
+      updateAPost()
       dispatch(updatePost(postData))
     }
     handleClear()
