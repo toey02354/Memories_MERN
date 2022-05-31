@@ -4,4 +4,6 @@ export interface FormI {
   message: string
   tags: string[]
   file: string
+  likeCount?: number
+  createdAt?: string
 }

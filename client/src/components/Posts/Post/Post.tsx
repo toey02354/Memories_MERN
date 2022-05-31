@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core/'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 import DeleteIcon from '@material-ui/icons/Delete'
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import { FormI } from '../../../interface/posts'
 import useStyles from './style'
 import moment from 'moment'
@@ -18,33 +19,57 @@ const Post = ({ post, ind }: { post: FormI; ind: number }) => {
   const classes = useStyles()
   return (
     <Card className={classes.cardContent}>
-      <CardContent>
+      <CardMedia
+        className={classes.media}
+        image={`https://picsum.photos/id/${ind}/500/300`}
+        title={post.title}
+      />
+      <div className={classes.overlay}>
         <Typography variant="h6">{post.creator}</Typography>
-        <CardMedia
-          className={classes.media}
-          image={`https://picsum.photos/id/${ind}/500/300`}
-          title={post.title}
-        />
-        <Typography variant="h3" component="div">
-          {post.title}
+        <Typography variant="body2">
+          {moment(post.createdAt).fromNow()}
         </Typography>
-        <br />
-        <Typography variant="body2">{post.message}</Typography>
-        <br />
-        <Grid container className={classes.tags} spacing={1}>
-          {post.tags.map((tag, index) => (
-            <Grid item key={index}>
-              #{tag}
-            </Grid>
-          ))}
-        </Grid>
+      </div>
+      <div className={classes.overlay2}>
+        <Button style={{ color: 'white' }} size="small" onClick={() => {}}>
+          <MoreHorizIcon fontSize="default" />
+        </Button>
+      </div>
+      <div className={classes.tags}>
+        <Typography variant="body2" color="textSecondary" component="h2">
+          {post.tags.map((tag) => `#${tag} `)}
+        </Typography>
+      </div>
+      <Typography
+        className={classes.title}
+        gutterBottom
+        variant="h5"
+        component="h2"
+      >
+        {post.title}
+      </Typography>
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {post.message}
+        </Typography>
       </CardContent>
       <CardActions className={classes.actionBtn}>
-        <Button size="small">
+        <Button
+          size="small"
+          onClick={() => {
+            console.log('like')
+          }}
+        >
           <ThumbUpAltIcon />
+          {post.likeCount}
         </Button>
-        <Button size="small">
-          <DeleteIcon />
+        <Button
+          size="small"
+          onClick={() => {
+            console.log('delete')
+          }}
+        >
+          <DeleteIcon /> Delete
         </Button>
       </CardActions>
     </Card>

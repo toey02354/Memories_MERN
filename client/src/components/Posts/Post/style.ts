@@ -5,9 +5,12 @@ export default makeStyles({
     width: '300px',
     display: 'flex',
     flexDirection: 'column',
+    position: 'relative',
   },
   tags: {
-    textDecoration: 'underline',
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '20px',
   },
   media: {
     height: 0,
@@ -19,5 +22,20 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  overlay: {
+    position: 'absolute',
+    top: '20px',
+    left: '20px',
+    color: 'white',
+  },
+  overlay2: {
+    position: 'absolute',
+    top: '20px',
+    right: '20px',
+    color: 'white',
+  },
+  title: {
+    padding: '0 16px',
   },
 })
