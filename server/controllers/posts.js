@@ -29,7 +29,7 @@ export const updatePost = async (req, res) => {
   const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {
     new: true,
   })
-  res.status(200).json(updatedPost)
+  res.json(updatedPost)
 }
 export const deletePost = async (req, res) => {
   const { id: _id } = req.param

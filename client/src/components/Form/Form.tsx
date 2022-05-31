@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useStyles from './style'
-import { createPost } from '../../services/Redux/postSlicer'
-import { useAppDispatch } from '../../services/Redux/hook'
+import { createPost, updatePost } from '../../services/Redux/postSlicer'
+import { useAppDispatch, useAppSelector } from '../../services/Redux/hook'
 import { Typography, TextField, Button, Paper } from '@material-ui/core'
 import { FormI } from '../../interface/posts'
 import Axios from '../../api/Axios'
@@ -14,10 +14,23 @@ const initialPostData = {
   file: '',
 }
 
-const Form = () => {
+const Form = ({
+  currentId,
+  setCurrentId,
+}: {
+  currentId: number | string
+  setCurrentId: any
+}) => {
   const dispatch = useAppDispatch()
   const classes = useStyles()
   const [postData, setPostData] = useState<FormI>(initialPostData)
+  const post = useAppSelector((state) =>
+    currentId ? state.posts.find((message) => message._id === currentId) : null
+  )
+
+  useEffect(() => {
+    if (post) setPostData(post)
+  }, [post])
 
   const createAPost = async () => {
     await Axios.post('/', postData)
@@ -27,14 +40,27 @@ const Form = () => {
       .catch((err) => console.error('Error: ', err))
   }
 
+  const updateAAPost = async () => {
+    await Axios.patch('/', postData)
+      .then((res) => {
+        console.log('Response: ', res)
+      })
+      .catch((err) => console.error('Error: ', err))
+  }
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
-    console.log(postData)
-    await createAPost()
-    setPostData(initialPostData)
+    if (currentId === 0) {
+      createAPost()
+      dispatch(createPost(postData))
+    } else {
+      updateAAPost()
+      dispatch(updatePost(postData))
+    }
+    handleClear()
   }
-  const handleClear = (event: React.FormEvent) => {
-    event.preventDefault()
+  const handleClear = () => {
+    setCurrentId(0)
     setPostData(initialPostData)
   }
 

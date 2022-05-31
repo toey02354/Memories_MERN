@@ -14,7 +14,15 @@ import { FormI } from '../../../interface/posts'
 import useStyles from './style'
 import moment from 'moment'
 
-const Post = ({ post, ind }: { post: FormI; ind: number }) => {
+const Post = ({
+  post,
+  ind,
+  setCurrentId,
+}: {
+  post: FormI
+  ind: number
+  setCurrentId: any
+}) => {
   const classes = useStyles()
   return (
     <Card className={classes.cardContent}>
@@ -30,7 +38,13 @@ const Post = ({ post, ind }: { post: FormI; ind: number }) => {
         </Typography>
       </div>
       <div className={classes.overlay2}>
-        <Button style={{ color: 'white' }} size="small" onClick={() => {}}>
+        <Button
+          style={{ color: 'white' }}
+          size="small"
+          onClick={() => {
+            setCurrentId(post._id)
+          }}
+        >
           <MoreHorizIcon fontSize="default" />
         </Button>
       </div>
