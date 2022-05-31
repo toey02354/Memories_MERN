@@ -6,7 +6,6 @@ import {
   CardMedia,
   Button,
   Typography,
-  Grid,
 } from '@material-ui/core/'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -54,15 +53,17 @@ const Post = ({ post, ind }: { post: FormI; ind: number }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.actionBtn}>
-        <Button
-          size="small"
-          onClick={() => {
-            console.log('like')
-          }}
-        >
-          <ThumbUpAltIcon />
+        <div>
+          <Button
+            size="small"
+            onClick={() => {
+              console.log('like')
+            }}
+          >
+            <ThumbUpAltIcon /> Like
+          </Button>
           {post.likeCount}
-        </Button>
+        </div>
         <Button
           size="small"
           onClick={() => {

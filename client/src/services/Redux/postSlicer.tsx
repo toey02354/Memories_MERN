@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FormI } from '../../interface/posts'
+import Axios from '../../api/Axios'
 
 const initialState: FormI[] = []
 

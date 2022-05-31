@@ -6,4 +6,5 @@ export interface FormI {
   file: string
   likeCount?: number
   createdAt?: string
+  _id?: string
 }
