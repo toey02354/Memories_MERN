@@ -42,7 +42,6 @@ const Form = ({
   }
 
   const updateAPost = async () => {
-    console.log('currentId: ', currentId)
     await Axios.patch(`/update/${currentId}`, postData)
       .then((res) => {
         dispatch(updatePost(res.data))

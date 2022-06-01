@@ -31,7 +31,6 @@ const Post = ({
   const deleteAPost = () => {
     Axios.delete(`/delete/${post._id}`)
       .then((res) => {
-        console.log(res)
         dispatch(deletePost(res.data))
       })
       .catch((err) => console.log(err))
@@ -94,7 +93,6 @@ const Post = ({
         <Button
           size="small"
           onClick={() => {
-            console.log('delete: ', post._id)
             deleteAPost()
           }}
         >
