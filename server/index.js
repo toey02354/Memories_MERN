@@ -15,7 +15,7 @@ app.use('/posts', postRoutes)
 
 const env = dotenv.config()
 const CONNECTION_URL = env.parsed.CONNECTION_URL
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 
 mongoose
   .connect(CONNECTION_URL, {

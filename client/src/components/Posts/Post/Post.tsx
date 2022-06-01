@@ -13,6 +13,9 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import { FormI } from '../../../interface/posts'
 import useStyles from './style'
 import moment from 'moment'
+import Axios from '../../../api/Axios'
+import { useAppDispatch } from '../../../services/Redux/hook'
+import { deletePost } from '../../../services/Redux/postSlicer'
 
 const Post = ({
   post,
@@ -24,6 +27,16 @@ const Post = ({
   setCurrentId: any
 }) => {
   const classes = useStyles()
+  const dispatch = useAppDispatch()
+  const deleteAPost = () => {
+    Axios.delete(`/delete/${post._id}`)
+      .then((res) => {
+        console.log(res)
+        dispatch(deletePost(res.data))
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <Card className={classes.cardContent}>
       <CardMedia
@@ -81,7 +94,8 @@ const Post = ({
         <Button
           size="small"
           onClick={() => {
-            console.log('delete')
+            console.log('delete: ', post._id)
+            deleteAPost()
           }}
         >
           <DeleteIcon /> Delete

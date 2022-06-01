@@ -12,6 +12,7 @@ const initialPostData = {
   message: '',
   tags: [''],
   file: '',
+  likeCount: 0,
 }
 
 const Form = ({
@@ -37,15 +38,18 @@ const Form = ({
       .then((res) => {
         console.log('Create a post')
         console.log('Response: ', res)
+        dispatch(createPost(res.data))
       })
       .catch((err) => console.error('Error: ', err))
   }
 
   const updateAPost = async () => {
-    await Axios.patch('/', postData)
+    console.log('currentId: ', currentId)
+    await Axios.patch(`/update/${currentId}`, postData)
       .then((res) => {
         console.log('Update a post')
         console.log('Response: ', res)
+        dispatch(updatePost(res.data))
       })
       .catch((err) => console.error('Error: ', err))
   }
@@ -54,10 +58,8 @@ const Form = ({
     event.preventDefault()
     if (currentId === 0) {
       createAPost()
-      dispatch(createPost(postData))
     } else {
       updateAPost()
-      dispatch(updatePost(postData))
     }
     handleClear()
   }

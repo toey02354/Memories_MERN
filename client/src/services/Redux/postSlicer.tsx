@@ -20,10 +20,12 @@ export const postSlice = createSlice({
       return [...state, action.payload]
     },
     updatePost: (state, action: PayloadAction<FormI>) => {
-      state
+      return state.map((state) =>
+        state._id === action.payload._id ? action.payload : state
+      )
     },
     deletePost: (state, action: PayloadAction<FormI>) => {
-      state
+      return state.filter((state) => state._id !== action.payload._id)
     },
   },
 })
