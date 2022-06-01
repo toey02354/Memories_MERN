@@ -10,7 +10,7 @@ const initialPostData = {
   creator: '',
   title: '',
   message: '',
-  tags: [''],
+  tags: [],
   file: '',
   likeCount: 0,
 }
