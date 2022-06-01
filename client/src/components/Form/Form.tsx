@@ -36,8 +36,6 @@ const Form = ({
   const createAPost = async () => {
     await Axios.post('/', postData)
       .then((res) => {
-        console.log('Create a post')
-        console.log('Response: ', res)
         dispatch(createPost(res.data))
       })
       .catch((err) => console.error('Error: ', err))
@@ -47,8 +45,6 @@ const Form = ({
     console.log('currentId: ', currentId)
     await Axios.patch(`/update/${currentId}`, postData)
       .then((res) => {
-        console.log('Update a post')
-        console.log('Response: ', res)
         dispatch(updatePost(res.data))
       })
       .catch((err) => console.error('Error: ', err))
@@ -130,7 +126,6 @@ const Form = ({
           variant="contained"
           fullWidth
           color="secondary"
-          type="submit"
           onClick={handleClear}
         >
           Clear
